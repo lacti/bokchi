@@ -30,7 +30,7 @@
         },
         "rest_in_peace": {
             "image": "rest_in_peace.png",
-            "message": "김복치씨...다음엔 꼭 행복해지세요 ㅜㅜ",
+            "message": "`김복치씨... ${ctx.day}일 동안 고생 많으셨어요... 다음엔 꼭 행복해지세요 ㅜㅜ`",
             "next": "intro",
             "button": [
                 {
@@ -158,6 +158,17 @@
                 }
             ]
         },
+        "chicken-rental-fee": {
+            "image": "rental-fee.png",
+            "message": "월세를 내야 한다 ㅜㅜ",
+            "action": [
+                {
+                    "type": "addMoney",
+                    "amount": -100
+                }
+            ],
+            "next": "chicken-chicken"
+        },
         "chicken-beginners-great-success": {
             "image": "great-success.png",
             "message": "오픈 발이 있다!",
@@ -168,7 +179,7 @@
                 },
                 {
                     "condition": "true",
-                    "name": "chicken-chicken"
+                    "name": "chicken-rental-fee"
                 }
             ]
         },
@@ -182,7 +193,7 @@
                 },
                 {
                     "condition": "true",
-                    "name": "chicken-chicken"
+                    "name": "chicken-rental-fee"
                 }
             ]
         },
@@ -196,7 +207,7 @@
                 },
                 {
                     "condition": "true",
-                    "name": "chicken-chicken"
+                    "name": "chicken-rental-fee"
                 }
             ]
         },
@@ -210,29 +221,65 @@
                 },
                 {
                     "condition": "true",
-                    "name": "chicken-chicken"
+                    "name": "chicken-rental-fee"
                 }
             ]
         },
         "chicken-great-success": {
             "image": "great-success.png",
             "message": "한일전 축구경기가 있었다!",
-            "next": "chicken-chicken"
+            "next_if": [
+                {
+                    "condition": "isFeeDay()",
+                    "name": "chicken-rental-fee"
+                },
+                {
+                    "condition": "true",
+                    "name": "chicken-chicken"
+                }
+            ]
         },
         "chicken-soso": {
             "image": "soso.png",
             "message": "닭이 잘 튀겨졌다!",
-            "next": "chicken-chicken"
+            "next_if": [
+                {
+                    "condition": "isFeeDay()",
+                    "name": "chicken-rental-fee"
+                },
+                {
+                    "condition": "true",
+                    "name": "chicken-chicken"
+                }
+            ]
         },
         "chicken-fail": {
             "image": "fail.png",
             "message": "덜익은 닭이 배달되었다!",
-            "next": "chicken-chicken"
+            "next_if": [
+                {
+                    "condition": "isFeeDay()",
+                    "name": "chicken-rental-fee"
+                },
+                {
+                    "condition": "true",
+                    "name": "chicken-chicken"
+                }
+            ]
         },
         "chicken-great-fail": {
             "image": "great-fail.png",
             "message": "배달앱에 나쁜 리뷰가 달렸다!",
-            "next": "chicken-chicken"
+            "next_if": [
+                {
+                    "condition": "isFeeDay()",
+                    "name": "chicken-rental-fee"
+                },
+                {
+                    "condition": "true",
+                    "name": "chicken-chicken"
+                }
+            ]
         },
         "bread-start": {
             "image": "bread-start.png",
@@ -309,6 +356,17 @@
                 }
             ]
         },
+        "bread-rental-fee": {
+            "image": "rental-fee.png",
+            "message": "월세를 내야 한다 ㅜㅜ",
+            "action": [
+                {
+                    "type": "addMoney",
+                    "amount": -200
+                }
+            ],
+            "next": "bread-bread"
+        },
         "bread-beginners-great-success": {
             "image": "great-success.png",
             "message": "오픈 발이 있다!",
@@ -319,7 +377,7 @@
                 },
                 {
                     "condition": "true",
-                    "name": "bread-bread"
+                    "name": "bread-rental-fee"
                 }
             ]
         },
@@ -333,7 +391,7 @@
                 },
                 {
                     "condition": "true",
-                    "name": "bread-bread"
+                    "name": "bread-rental-fee"
                 }
             ]
         },
@@ -347,7 +405,7 @@
                 },
                 {
                     "condition": "true",
-                    "name": "bread-bread"
+                    "name": "bread-rental-fee"
                 }
             ]
         },
@@ -361,29 +419,65 @@
                 },
                 {
                     "condition": "true",
-                    "name": "bread-bread"
+                    "name": "bread-rental-fee"
                 }
             ]
         },
         "bread-great-success": {
             "image": "great-success.png",
             "message": "동네 맛집으로 입소문이 났다!",
-            "next": "bread-bread"
+            "next_if": [
+                {
+                    "condition": "isFeeDay()",
+                    "name": "bread-rental-fee"
+                },
+                {
+                    "condition": "true",
+                    "name": "bread-bread"
+                }
+            ]
         },
         "bread-soso": {
             "image": "soso.png",
             "message": "친구들이 사갔다!",
-            "next": "bread-bread"
+            "next_if": [
+                {
+                    "condition": "isFeeDay()",
+                    "name": "bread-rental-fee"
+                },
+                {
+                    "condition": "true",
+                    "name": "bread-bread"
+                }
+            ]
         },
         "bread-fail": {
             "image": "fail.png",
             "message": "머리카락이 나왔다!",
-            "next": "bread-bread"
+            "next_if": [
+                {
+                    "condition": "isFeeDay()",
+                    "name": "bread-rental-fee"
+                },
+                {
+                    "condition": "true",
+                    "name": "bread-bread"
+                }
+            ]
         },
         "bread-great-fail": {
             "image": "great-fail.png",
             "message": "빵에 곰팡이가 슬었다",
-            "next": "bread-bread"
+            "next_if": [
+                {
+                    "condition": "isFeeDay()",
+                    "name": "bread-rental-fee"
+                },
+                {
+                    "condition": "true",
+                    "name": "bread-bread"
+                }
+            ]
         }
     },
     "result": {

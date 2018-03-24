@@ -105,14 +105,18 @@ const getCurrentButtonElements = () => {
       return [$button1, $button2]
   }
 }
-
+const isFeeDay = () => ((ctx.day - 1) / 7) % 4 === 0
 const changeScene = name => {
   console.log(name)
   const scene = changeCurrentSceneData(name)
   if (scene.image) {
     $image.setAttribute('style', `background-image: url("${scene.image}")`)
   }
-  $message.innerHTML = scene.message
+  if (scene.message.indexOf('`') < 0) {
+    $message.innerHTML = scene.message
+  } else {
+    $message.innerHTML = eval(scene.message)
+  }
   if (scene.action) {
     act(scene.action)
   }
