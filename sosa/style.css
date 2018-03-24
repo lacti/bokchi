@@ -20,7 +20,7 @@ table thead tr {
 }
 table tbody tr td#message {
     padding: 1em;
-    height: 120px;
+    height: 90px;
     text-align: left;
     vertical-align: center;
 }
@@ -51,12 +51,11 @@ table tfoot tr td#choice {
 }
 #message {
     padding: 1em;
-    font-size: 1.1em;
     line-height: 1.5em;
     font-weight: 600;
 }
 .buttons {
-    padding: 1em 1em 0 1em;
+    padding: 1em 0em 0 0em;
     text-align: center;
 }
 .buttons button {

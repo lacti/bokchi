@@ -31,9 +31,7 @@ const $message = document.getElementById('message')
 
 const $button1 = document.getElementById('button-1')
 const $button2 = document.getElementById('button-2')
-const $button3 = document.getElementById('button-3')
-const $button4 = document.getElementById('button-4')
-const $buttons = [$button1, $button2, $button3, $button4]
+const $buttons = [$button1, $button2]
 
 const addDay = inc => {
   ctx.day += inc
@@ -79,13 +77,9 @@ const getCurrentButtonElements = () => {
   const countOfChoices = getCurrentSceneData().button.length
   switch (countOfChoices) {
     case 1:
-      return [$button4]
+      return [$button2]
     case 2:
-      return [$button3, $button4]
-    case 3:
-      return [$button1, $button2, $button3]
-    case 4:
-      return [$button1, $button2, $button3, $button4]
+      return [$button1, $button2]
   }
 }
 
