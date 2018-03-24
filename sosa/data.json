@@ -1,0 +1,50 @@
+{
+    "scene": {
+        "splash": {
+            "image": "splash.png",
+            "message": "소상공인으로써 세상과 맞서 싸우는 김복치, 그의 파란만장한 앞날은 과연...",
+            "button": [{
+                "name": "전체화면 시작",
+                "action": [
+                    {
+                        "type": "javascript",
+                        "function": "makeFullScreen"
+                    }, {
+                        "type": "changeScene",
+                        "scene": "intro"
+                    }
+                ]
+            }, {
+                "name": "이대로 시작",
+                "action": [
+                    {
+                        "type": "changeScene",
+                        "scene": "intro"
+                    }
+                ]
+            }]
+        },
+        "intro": {
+            "image": "intro-1.png",
+            "action": [
+                {
+                    "type": "javascript",
+                    "function": "initializeStatus"
+                }
+            ],
+            "message": "정년 60세 김복치씨는 27년간 다니던 회사에서 권고사직을 받았다.\n그에게 주어진 퇴직금 1억원! 그는 험한 이 세상에서 살아 남을 수 있을 것인가!",
+            "button": [{
+                "name": "다음",
+                "action": [
+                    {
+                        "type": "changeScene",
+                        "scene": "intro-2"
+                    }
+                ]
+            }]
+        }
+    },
+    "result": {
+
+    }
+}

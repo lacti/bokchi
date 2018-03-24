@@ -1,0 +1,70 @@
+html, body, #a {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+table {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    border: 0px;
+    border-collapse: collapse;
+}
+table thead tr {
+    height: 24px;
+    text-align: left;
+    vertical-align: top;
+}
+table tbody tr td#message {
+    padding: 1em;
+    height: 120px;
+    text-align: left;
+    vertical-align: center;
+}
+table tfoot tr td#choice {
+    padding: 1em;
+    text-align: left;
+    vertical-align: top;
+}
+
+#image {
+    background: white;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+#status {
+    padding: 2px 1em;
+    background: darkgray;
+}
+#day {
+    float: left;
+}
+#money {
+    float: right;
+}
+#script {
+    background: burlywood;
+}
+#message {
+    padding: 1em;
+    font-size: 1.1em;
+    line-height: 1.5em;
+    font-weight: 600;
+}
+.buttons {
+    padding: 1em 1em 0 1em;
+    text-align: center;
+}
+.buttons button {
+    padding: 1em 2em;
+    margin: 0 0.5em;
+    background-color: #e7e7e7;
+    color: black;
+    border: 0;
+    width: 40%;
+    visibility: hidden;
+}
