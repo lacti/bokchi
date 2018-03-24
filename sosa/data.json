@@ -686,7 +686,7 @@
                 "action": [
                     {
                         "type": "addMoney",
-                        "amount": -150
+                        "amount": -200
                     }
                 ]
             }
@@ -728,7 +728,7 @@
                 "action": [
                     {
                         "type": "addMoney",
-                        "amount": -200
+                        "amount": -250
                     }
                 ]
             }
@@ -770,7 +770,7 @@
                 "action": [
                     {
                         "type": "addMoney",
-                        "amount": -150
+                        "amount": -200
                     }
                 ]
             }
@@ -812,7 +812,7 @@
                 "action": [
                     {
                         "type": "addMoney",
-                        "amount": -200
+                        "amount": -250
                     }
                 ]
             }
