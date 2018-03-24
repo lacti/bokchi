@@ -698,7 +698,7 @@
                 "action": [
                     {
                         "type": "addMoney",
-                        "amount": 200
+                        "amount": 150
                     }
                 ]
             },
@@ -782,7 +782,7 @@
                 "action": [
                     {
                         "type": "addMoney",
-                        "amount": 200
+                        "amount": 150
                     }
                 ]
             },
