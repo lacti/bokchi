@@ -39,7 +39,7 @@ const addDay = inc => {
   ctx.day += inc
   $day.innerText = `${ctx.day}일차`
 }
-const modifyMoney = delta => {
+const addMoney = delta => {
   ctx.money += delta
   $money.innerText = formatMoney(ctx.money)
 }
@@ -109,7 +109,7 @@ const scriptFunctions = {
   makeFullScreen: () => requestFullscreen(document.documentElement),
   initializeStatus: () => {
     addDay(0)
-    modifyMoney(0)
+    addMoney(0)
   }
 }
 
@@ -123,6 +123,14 @@ const act = actions => {
 
       case 'changeScene':
         changeScene(action.scene)
+        break
+
+      case 'addDay':
+        addDay(action.amount)
+        break
+
+      case 'addMoney':
+        addMoney(action.amount)
         break
     }
   }
