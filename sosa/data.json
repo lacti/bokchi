@@ -362,7 +362,7 @@
             "action": [
                 {
                     "type": "addMoney",
-                    "amount": -200
+                    "amount": -300
                 }
             ],
             "next": "bread-bread"
