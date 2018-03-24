@@ -5,7 +5,7 @@
             "message": "소상공인으로써 세상과 맞서 싸우는 김복치, 그의 파란만장한 앞날은 과연...",
             "button": [
                 {
-                    "name": "전체화면 시작",
+                    "name": "전체화면",
                     "action": [
                         {
                             "type": "javascript",
@@ -18,7 +18,7 @@
                     ]
                 },
                 {
-                    "name": "이대로 시작",
+                    "name": "시작",
                     "action": [
                         {
                             "type": "changeScene",
@@ -37,50 +37,184 @@
                 }
             ],
             "message": "정년 60세 김복치씨는 27년간 다니던 회사에서 권고사직을 받았다.\n그에게 주어진 퇴직금 1억원! 그는 험한 이 세상에서 살아 남을 수 있을 것인가!",
+            "next": "intro-2"
+        },
+        "intro-2": {
+            "image": "intro-2.png",
+            "message": "김복치씨는 창업하기로 결심한다.\n 치킨집이냐 빵집이냐 혼란스럽다!",
             "button": [
                 {
-                    "name": "다음",
+                    "name": "치킨집",
                     "action": [
                         {
                             "type": "changeScene",
-                            "scene": "intro-2"
+                            "scene": "chicken-start"
+                        }
+                    ]
+                },
+                {
+                    "name": "빵집",
+                    "action": [
+                        {
+                            "type": "changeScene",
+                            "scene": "bread-start"
                         }
                     ]
                 }
             ]
         },
-        "template": {
-            "image": ".png",
-            "message": "김복치씨는 창업하기로 결심한다.\n 치킨집이냐 빵집이냐 혼란스럽다!",
-            "button": [
+        "chicken-start": {
+            "image": "chicken-start.png",
+            "message": "건물임대료 8천만원, 인테리어 1천만원, 프랜차이즈가입 0.5천만원! 김복치씨에겐 5백만원과 치킨집이 남았다!",
+            "action": [
                 {
-                    "name": "치킨집",
-                    "action": []
+                    "type": "addDay",
+                    "amount": 7
                 },
                 {
-                    "name": "빵집",
-                    "action": []
+                    "type": "addMoney",
+                    "amount": -9500
                 }
-            ]
+            ],
+            "next": "chicken-chicken"
         },
-        "template": {
-            "image": ".png",
-            "message": "건물임대료 8천만원\n인테리어 1천만원\n프랜차이즈가입 0.5천만원\n 김복치씨에겐 5백만원과 치킨집이 남았다!"
-        },
-        "template": {
-            "image": ".png",
+        "chicken-chicken": {
+            "image": "chicken-chicken.png",
             "message": "김복치씨는 일주일 동안 어떤 치킨을 팔까?",
             "button": [
                 {
                     "name": "후라이드치킨",
-                    "action": []
+                    "action": [
+                        {
+                            "type": "addDay",
+                            "amount": 7
+                        },
+                        {
+                            "type": "result",
+                            "name": "result-chicken-fried"
+                        }
+                    ]
                 },
                 {
                     "name": "양념치킨",
-                    "action": []
+                    "action": [
+                        {
+                            "type": "addDay",
+                            "amount": 7
+                        },
+                        {
+                            "type": "result",
+                            "name": "result-chicken-spicy"
+                        }
+                    ]
                 }
             ]
         },
+        "chicken-beginners-great-success": {
+            "image": "great-success.png",
+            "message": "오픈 발이 있다!",
+            "next": "chicken-chicken"
+        },
+        "chicken-beginners-soso": {
+            "image": "soso.png",
+            "message": "친구들이 와서 먹어줬다!",
+            "next": "chicken-chicken"
+        },
+        "chicken-beginners-fail": {
+            "image": "fail.png",
+            "message": "홍보가 덜 된 걸까?",
+            "next": "chicken-chicken"
+        },
+        "chicken-beginners-great-fail": {
+            "image": "great-fail.png",
+            "message": "AI 파동",
+            "next": "chicken-chicken"
+        }
     },
-    "result": {}
+    "result": {
+        "result-chicken-fried": [
+            {
+                "scene": "chicken-beginners-great-success",
+                "weight": "50",
+                "action": [
+                    {
+                        "type": "addMoney",
+                        "amount": 200
+                    }
+                ]
+            },
+            {
+                "scene": "chicken-beginners-soso",
+                "weight": "10",
+                "action": [
+                    {
+                        "type": "addMoney",
+                        "amount": 100
+                    }
+                ]
+            },
+            {
+                "scene": "chicken-beginners-fail",
+                "weight": "20",
+                "action": [
+                    {
+                        "type": "addMoney",
+                        "amount": -50
+                    }
+                ]
+            },
+            {
+                "scene": "chicken-beginners-great-fail",
+                "weight": "20",
+                "action": [
+                    {
+                        "type": "addMoney",
+                        "amount": -100
+                    }
+                ]
+            }
+        ],
+        "result-chicken-spicy": [
+            {
+                "scene": "chicken-beginners-great-success",
+                "weight": "50",
+                "action": [
+                    {
+                        "type": "addMoney",
+                        "amount": 300
+                    }
+                ]
+            },
+            {
+                "scene": "chicken-beginners-soso",
+                "weight": "10",
+                "action": [
+                    {
+                        "type": "addMoney",
+                        "amount": 100
+                    }
+                ]
+            },
+            {
+                "scene": "chicken-beginners-fail",
+                "weight": "20",
+                "action": [
+                    {
+                        "type": "addMoney",
+                        "amount": -100
+                    }
+                ]
+            },
+            {
+                "scene": "chicken-beginners-great-fail",
+                "weight": "20",
+                "action": [
+                    {
+                        "type": "addMoney",
+                        "amount": -200
+                    }
+                ]
+            }
+        ]
+    }
 }

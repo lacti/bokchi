@@ -22,12 +22,25 @@ const ctx = {
   data: null,
   scene: 'splash',
   day: 1,
-  money: 100000000
+  money: 10000
 }
+const $body = document.body
 const $day = document.getElementById('day')
 const $money = document.getElementById('money')
 const $image = document.getElementById('image')
 const $message = document.getElementById('message')
+
+$body.addEventListener('click', $event => {
+  const scene = getCurrentSceneData()
+  if (scene.button) {
+    return
+  }
+  if (scene.next) {
+    changeScene(scene.next)
+  } else {
+    window.alert('No next scene.')
+  }
+})
 
 const $button1 = document.getElementById('button-1')
 const $button2 = document.getElementById('button-2')
@@ -39,32 +52,33 @@ const addDay = inc => {
 }
 const addMoney = delta => {
   ctx.money += delta
-  $money.innerText = formatMoney(ctx.money)
-}
-
-const chooseButton = $event => {
-  const $currentButtons = getCurrentButtonElements()
-  for (let index = 0; index < $currentButtons.length; index++) {
-    if ($event.target === $currentButtons[index]) {
-      act(getCurrentSceneData().button[index].action)
-      return
-    }
-  }
+  $money.innerText = formatMoney(ctx.money * 10000)
 }
 
 for (let $button of $buttons) {
-  $button.addEventListener('click', chooseButton)
+  $button.addEventListener('click', $event => {
+    const $currentButtons = getCurrentButtonElements()
+    for (let index = 0; index < $currentButtons.length; index++) {
+      if ($event.target === $currentButtons[index]) {
+        act(getCurrentSceneData().button[index].action)
+        $event.stopPropagation()
+        return
+      }
+    }
+  })
 }
 
-const mapButtons = (buttons, $currentButtons) => {
+const hideAllButtons = () => {
   for (let $button of $buttons) {
-    $button.setAttribute('style', 'visibility: hidden')
+    $button.setAttribute('style', 'display: none')
   }
+}
+const mapButtons = (buttons, $currentButtons) => {
   for (let index = 0; index < buttons.length; index++) {
     const button = buttons[index]
     const $button = $currentButtons[index]
     $button.innerHTML = button.name
-    $button.setAttribute('style', 'visibility: visible')
+    $button.setAttribute('style', '')
   }
 }
 
@@ -92,10 +106,9 @@ const changeScene = name => {
   if (scene.action) {
     act(scene.action)
   }
+  hideAllButtons()
   if (scene.button) {
     mapButtons(scene.button, getCurrentButtonElements())
-  } else {
-    window.alert('no button defined')
   }
 }
 
@@ -126,6 +139,9 @@ const act = actions => {
       case 'addMoney':
         addMoney(action.amount)
         break
+
+      case 'result':
+        processResult(action.name)
     }
   }
 }
@@ -148,4 +164,17 @@ const formatMoney = (money, depth = 0) => {
     formatMoney(upper, depth + 1) +
     (lower === 0 ? (depth === 0 ? '원' : '') : lower + '원만억조'[depth])
   )
+}
+
+const processResult = resultName => {
+  const candidates = ctx.data.result[resultName]
+  let gauge = Math.floor(Math.random() * 100)
+  for (let candidate of candidates) {
+    gauge -= candidate.weight
+    if (gauge <= 0) {
+      act(candidate.action)
+      changeScene(candidate.scene)
+      return
+    }
+  }
 }
