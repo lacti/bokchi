@@ -106,7 +106,7 @@ const getCurrentButtonElements = () => {
   }
 }
 const isFeeDay = () => ((ctx.day - 1) / 7) % 4 === 0
-const changeScene = name => {
+const changeScene = (name, moneyChanged) => {
   console.log(name)
   const scene = changeCurrentSceneData(name)
   if (scene.image) {
@@ -116,6 +116,9 @@ const changeScene = name => {
     $message.innerHTML = scene.message
   } else {
     $message.innerHTML = eval(scene.message)
+  }
+  if (moneyChanged) {
+    showMoneyChanged(moneyChanged)
   }
   if (scene.action) {
     act(scene.action)
@@ -131,6 +134,17 @@ const scriptFunctions = {
   initializeStatus: () => {
     setDay(1)
     setMoney(10000)
+  }
+}
+const showMoneyChanged = amount => {
+  if (amount > 0) {
+    $message.innerHTML += ` <font color="blue">${formatMoney(
+      Math.abs(amount)
+    )} 벌었다!</font>`
+  } else if (amount < 0) {
+    $message.innerHTML += ` <font color="red">${formatMoney(
+      Math.abs(amount)
+    )} 지출 ㅜㅜ</font>`
   }
 }
 
@@ -152,6 +166,8 @@ const act = actions => {
 
       case 'addMoney':
         addMoney(action.amount)
+        showMoneyChanged(action.amount)
+        ctx.lastMoneyChanged = action.amount
         break
 
       case 'result':
@@ -184,6 +200,15 @@ const formatMoney = (money, depth = 0) => {
   )
 }
 
+const findAction = (actions, type) => {
+  for (let action of actions) {
+    if (action.type === type) {
+      return action
+    }
+  }
+  return null
+}
+
 const processResult = resultName => {
   const candidates = ctx.data.result[resultName]
   let gauge = Math.floor(Math.random() * 100)
@@ -191,7 +216,9 @@ const processResult = resultName => {
     gauge -= candidate.weight
     if (gauge <= 0) {
       act(candidate.action)
-      changeScene(candidate.scene)
+      moneyAction = findAction(candidate.action, 'addMoney')
+      moneyChanged = moneyAction ? moneyAction.amount : null
+      changeScene(candidate.scene, moneyChanged)
       return
     }
   }
