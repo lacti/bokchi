@@ -3,26 +3,30 @@
         "splash": {
             "image": "splash.png",
             "message": "소상공인으로써 세상과 맞서 싸우는 김복치, 그의 파란만장한 앞날은 과연...",
-            "button": [{
-                "name": "전체화면 시작",
-                "action": [
-                    {
-                        "type": "javascript",
-                        "function": "makeFullScreen"
-                    }, {
-                        "type": "changeScene",
-                        "scene": "intro"
-                    }
-                ]
-            }, {
-                "name": "이대로 시작",
-                "action": [
-                    {
-                        "type": "changeScene",
-                        "scene": "intro"
-                    }
-                ]
-            }]
+            "button": [
+                {
+                    "name": "전체화면 시작",
+                    "action": [
+                        {
+                            "type": "javascript",
+                            "function": "makeFullScreen"
+                        },
+                        {
+                            "type": "changeScene",
+                            "scene": "intro"
+                        }
+                    ]
+                },
+                {
+                    "name": "이대로 시작",
+                    "action": [
+                        {
+                            "type": "changeScene",
+                            "scene": "intro"
+                        }
+                    ]
+                }
+            ]
         },
         "intro": {
             "image": "intro-1.png",
@@ -33,18 +37,50 @@
                 }
             ],
             "message": "정년 60세 김복치씨는 27년간 다니던 회사에서 권고사직을 받았다.\n그에게 주어진 퇴직금 1억원! 그는 험한 이 세상에서 살아 남을 수 있을 것인가!",
-            "button": [{
-                "name": "다음",
-                "action": [
-                    {
-                        "type": "changeScene",
-                        "scene": "intro-2"
-                    }
-                ]
-            }]
-        }
+            "button": [
+                {
+                    "name": "다음",
+                    "action": [
+                        {
+                            "type": "changeScene",
+                            "scene": "intro-2"
+                        }
+                    ]
+                }
+            ]
+        },
+        "template": {
+            "image": ".png",
+            "message": "김복치씨는 창업하기로 결심한다.\n 치킨집이냐 빵집이냐 혼란스럽다!",
+            "button": [
+                {
+                    "name": "치킨집",
+                    "action": []
+                },
+                {
+                    "name": "빵집",
+                    "action": []
+                }
+            ]
+        },
+        "template": {
+            "image": ".png",
+            "message": "건물임대료 8천만원\n인테리어 1천만원\n프랜차이즈가입 0.5천만원\n 김복치씨에겐 5백만원과 치킨집이 남았다!"
+        },
+        "template": {
+            "image": ".png",
+            "message": "김복치씨는 일주일 동안 어떤 치킨을 팔까?",
+            "button": [
+                {
+                    "name": "후라이드치킨",
+                    "action": []
+                },
+                {
+                    "name": "양념치킨",
+                    "action": []
+                }
+            ]
+        },
     },
-    "result": {
-
-    }
+    "result": {}
 }
