@@ -139,11 +139,11 @@ const scriptFunctions = {
 const showMoneyChanged = amount => {
   if (amount > 0) {
     $message.innerHTML += ` <font color="blue">${formatMoney(
-      Math.abs(amount)
+      Math.abs(amount) * 10000
     )} 벌었다!</font>`
   } else if (amount < 0) {
     $message.innerHTML += ` <font color="red">${formatMoney(
-      Math.abs(amount)
+      Math.abs(amount) * 10000
     )} 지출 ㅜㅜ</font>`
   }
 }

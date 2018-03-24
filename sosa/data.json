@@ -283,11 +283,11 @@
         },
         "bread-start": {
             "image": "bread-start.png",
-            "message": "건물임대료 6천만원, 인테리어 2천만원, 프랜차이즈가입 0.5천만원! 김복치씨에겐 5백만원과 치킨집이 남았다!",
+            "message": "건물임대료 6천만원, 인테리어 2천만원, 프랜차이즈가입 1천만원! 김복치씨에겐 5백만원과 치킨집이 남았다!",
             "action": [
                 {
                     "type": "addMoney",
-                    "amount": -8500
+                    "amount": -9000
                 }
             ],
             "next": "bread-beginners-bread"
