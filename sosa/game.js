@@ -37,6 +37,13 @@ $body.addEventListener('click', $event => {
   }
   if (scene.next) {
     changeScene(scene.next)
+  } else if (scene.next_if) {
+    for (let each of scene.next_if) {
+      if (eval(each.condition)) {
+        changeScene(each.name)
+        break
+      }
+    }
   } else {
     window.alert('No next scene.')
   }
@@ -46,14 +53,16 @@ const $button1 = document.getElementById('button-1')
 const $button2 = document.getElementById('button-2')
 const $buttons = [$button1, $button2]
 
-const addDay = inc => {
-  ctx.day += inc
+const setDay = value => {
+  ctx.day = value
   $day.innerText = `${ctx.day}일차`
 }
-const addMoney = delta => {
-  ctx.money += delta
+const addDay = inc => setDay(ctx.day + inc)
+const setMoney = value => {
+  ctx.money = value
   $money.innerText = formatMoney(ctx.money * 10000)
 }
+const addMoney = delta => setMoney(ctx.money + delta)
 
 for (let $button of $buttons) {
   $button.addEventListener('click', $event => {
@@ -98,6 +107,7 @@ const getCurrentButtonElements = () => {
 }
 
 const changeScene = name => {
+  console.log(name)
   const scene = changeCurrentSceneData(name)
   if (scene.image) {
     $image.setAttribute('style', `background-image: url("${scene.image}")`)
@@ -115,8 +125,8 @@ const changeScene = name => {
 const scriptFunctions = {
   makeFullScreen: () => requestFullscreen(document.documentElement),
   initializeStatus: () => {
-    addDay(0)
-    addMoney(0)
+    setDay(1)
+    setMoney(10000)
   }
 }
 
@@ -142,7 +152,11 @@ const act = actions => {
 
       case 'result':
         processResult(action.name)
+        break
     }
+  }
+  if (ctx.money <= 0) {
+    changeScene('rest_in_peace')
   }
 }
 
@@ -155,7 +169,7 @@ window
   })
 
 const formatMoney = (money, depth = 0) => {
-  if (money === 0) {
+  if (money <= 0) {
     return depth === 0 ? '0원' : ''
   }
   const upper = Math.floor(money / 10000)
