@@ -1,821 +1,273 @@
 {
     "scene": {
         "splash": {
-            "image": "splash.png",
             "message": "소상공인으로써 세상과 맞서 싸우는 김복치, 그의 파란만장한 앞날은 과연...",
-            "button": [
-                {
-                    "name": "전체화면",
-                    "action": [
-                        {
-                            "type": "javascript",
-                            "function": "makeFullScreen"
-                        },
-                        {
-                            "type": "changeScene",
-                            "scene": "intro"
-                        }
-                    ]
-                },
-                {
-                    "name": "시작",
-                    "action": [
-                        {
-                            "type": "changeScene",
-                            "scene": "intro"
-                        }
-                    ]
-                }
-            ]
+            "button": {
+                "전체화면": [
+                    {"javascript": "makeFullScreen"},
+                    {"scene": "intro-1"}
+                ],
+                "시작": "intro-1"
+            }
         },
         "rest_in_peace": {
-            "image": "rest_in_peace.png",
             "message": "`김복치씨... ${ctx.day}일 동안 고생 많으셨어요... 다음엔 꼭 행복해지세요 ㅜㅜ`",
-            "next": "intro",
-            "button": [
-                {
-                    "name": "다시하기",
-                    "action": [
-                        {
-                            "type": "javascript",
-                            "function": "initializeStatus"
-                        },
-                        {
-                            "type": "changeScene",
-                            "scene": "intro"
-                        }
-                    ]
-                }
-            ]
+            "button": {
+                "다시하기": [
+                    {"javascript": "initializeStatus"},
+                    {"scene": "intro-1"}
+                ]
+            }
         },
-        "intro": {
-            "image": "intro-1.png",
-            "action": [
-                {
-                    "type": "javascript",
-                    "function": "initializeStatus"
-                }
-            ],
+        "intro-1": {
+            "action": "initializeStatus",
             "message": "정년 60세 김복치씨는 27년간 다니던 회사에서 권고사직을 받았다.\n그에게 주어진 퇴직금 1억원! 그는 험한 이 세상에서 살아 남을 수 있을 것인가!",
             "next": "intro-2"
         },
         "intro-2": {
-            "image": "intro-2.png",
             "message": "김복치씨는 창업하기로 결심한다.\n 치킨집이냐 빵집이냐 혼란스럽다!",
-            "button": [
-                {
-                    "name": "치킨집",
-                    "action": [
-                        {
-                            "type": "changeScene",
-                            "scene": "chicken-start"
-                        }
-                    ]
-                },
-                {
-                    "name": "빵집",
-                    "action": [
-                        {
-                            "type": "changeScene",
-                            "scene": "bread-start"
-                        }
-                    ]
-                }
-            ]
+            "button": {
+                "치킨집": "chicken-start",
+                "빵집": "bread-start"
+            }
         },
         "chicken-start": {
-            "image": "chicken-start.png",
             "message": "건물임대료 8천만원, 인테리어 1천만원, 프랜차이즈가입 0.5천만원! 김복치씨에겐 5백만원과 치킨집이 남았다!",
-            "action": [
-                {
-                    "type": "addMoney",
-                    "amount": -9500
-                }
-            ],
+            "action": {"money": -9500},
             "next": "chicken-beginners-chicken"
         },
         "chicken-beginners-chicken": {
             "image": "chicken-chicken.png",
             "message": "김복치씨는 일주일 동안 어떤 치킨을 팔까?",
-            "button": [
-                {
-                    "name": "후라이드치킨",
-                    "action": [
-                        {
-                            "type": "addDay",
-                            "amount": 7
-                        },
-                        {
-                            "type": "result",
-                            "name": "result-chicken-beginners-fried"
-                        }
-                    ]
-                },
-                {
-                    "name": "양념치킨",
-                    "action": [
-                        {
-                            "type": "addDay",
-                            "amount": 7
-                        },
-                        {
-                            "type": "result",
-                            "name": "result-chicken-beginners-spicy"
-                        }
-                    ]
-                }
-            ]
+            "button": {
+                "후라이드치킨": {"result": "result-chicken-beginners-fried"},
+                "양념치킨": {"result": "result-chicken-beginners-spicy"}
+            }
         },
         "chicken-chicken": {
-            "image": "chicken-chicken.png",
             "message": "이제 본격적으로 시작해보자. 다음 일주일 동안은 어떤 치킨을 팔까?",
-            "button": [
-                {
-                    "name": "후라이드치킨",
-                    "action": [
-                        {
-                            "type": "addDay",
-                            "amount": 7
-                        },
-                        {
-                            "type": "result",
-                            "name": "result-chicken-fried"
-                        }
-                    ]
-                },
-                {
-                    "name": "양념치킨",
-                    "action": [
-                        {
-                            "type": "addDay",
-                            "amount": 7
-                        },
-                        {
-                            "type": "result",
-                            "name": "result-chicken-spicy"
-                        }
-                    ]
-                }
-            ]
+            "button": {
+                "후라이드치킨": {"result": "result-chicken-fried"},
+                "양념치킨": {"result": "result-chicken-spicy"}
+            }
         },
         "chicken-rental-fee": {
             "image": "rental-fee.png",
             "message": "월세를 내야 한다 ㅜㅜ",
-            "action": [
-                {
-                    "type": "addMoney",
-                    "amount": -100
-                }
-            ],
+            "action": {"money": -100},
             "next": "chicken-chicken"
         },
         "chicken-beginners-great-success": {
             "image": "great-success.png",
-            "message": "오픈 발이 있다!",
-            "next_if": [
-                {
-                    "condition": "ctx.day <= 28",
-                    "name": "chicken-beginners-chicken"
-                },
-                {
-                    "condition": "true",
-                    "name": "chicken-rental-fee"
-                }
+            "message": "오픈 빨이 있다!",
+            "next": [
+                {"chicken-beginners-chicken": "ctx.day <= 28"},
+                {"chicken-rental-fee": true}
             ]
         },
         "chicken-beginners-soso": {
             "image": "soso.png",
             "message": "친구들이 와서 먹어줬다!",
-            "next_if": [
-                {
-                    "condition": "ctx.day <= 28",
-                    "name": "chicken-beginners-chicken"
-                },
-                {
-                    "condition": "true",
-                    "name": "chicken-rental-fee"
-                }
+            "next": [
+                {"chicken-beginners-chicken": "ctx.day <= 28"},
+                {"chicken-rental-fee": true}
             ]
         },
         "chicken-beginners-fail": {
             "image": "fail.png",
             "message": "홍보가 덜 된 걸까?",
-            "next_if": [
-                {
-                    "condition": "ctx.day <= 28",
-                    "name": "chicken-beginners-chicken"
-                },
-                {
-                    "condition": "true",
-                    "name": "chicken-rental-fee"
-                }
+            "next": [
+                {"chicken-beginners-chicken": "ctx.day <= 28"},
+                {"chicken-rental-fee": true}
             ]
         },
         "chicken-beginners-great-fail": {
             "image": "great-fail.png",
             "message": "AI 파동",
-            "next_if": [
-                {
-                    "condition": "ctx.day <= 28",
-                    "name": "chicken-beginners-chicken"
-                },
-                {
-                    "condition": "true",
-                    "name": "chicken-rental-fee"
-                }
+            "next": [
+                {"chicken-beginners-chicken": "ctx.day <= 28"},
+                {"chicken-rental-fee": true}
             ]
         },
         "chicken-great-success": {
             "image": "great-success.png",
             "message": "한일전 축구경기가 있었다!",
-            "next_if": [
-                {
-                    "condition": "isFeeDay()",
-                    "name": "chicken-rental-fee"
-                },
-                {
-                    "condition": "true",
-                    "name": "chicken-chicken"
-                }
+            "next": [
+                {"chicken-rental-fee": "isFeeDay()"},
+                {"chicken-chicken": true}
             ]
         },
         "chicken-soso": {
             "image": "soso.png",
             "message": "닭이 잘 튀겨졌다!",
-            "next_if": [
-                {
-                    "condition": "isFeeDay()",
-                    "name": "chicken-rental-fee"
-                },
-                {
-                    "condition": "true",
-                    "name": "chicken-chicken"
-                }
+            "next": [
+                {"chicken-rental-fee": "isFeeDay()"},
+                {"chicken-chicken": true}
             ]
         },
         "chicken-fail": {
             "image": "fail.png",
             "message": "덜익은 닭이 배달되었다!",
-            "next_if": [
-                {
-                    "condition": "isFeeDay()",
-                    "name": "chicken-rental-fee"
-                },
-                {
-                    "condition": "true",
-                    "name": "chicken-chicken"
-                }
+            "next": [
+                {"chicken-rental-fee": "isFeeDay()"},
+                {"chicken-chicken": true}
             ]
         },
         "chicken-great-fail": {
             "image": "great-fail.png",
             "message": "배달앱에 나쁜 리뷰가 달렸다!",
-            "next_if": [
-                {
-                    "condition": "isFeeDay()",
-                    "name": "chicken-rental-fee"
-                },
-                {
-                    "condition": "true",
-                    "name": "chicken-chicken"
-                }
+            "next": [
+                {"chicken-rental-fee": "isFeeDay()"},
+                {"chicken-chicken": true}
             ]
         },
         "bread-start": {
-            "image": "bread-start.png",
             "message": "건물임대료 6천만원, 인테리어 2천만원, 프랜차이즈가입 1천만원! 김복치씨에겐 5백만원과 치킨집이 남았다!",
-            "action": [
-                {
-                    "type": "addMoney",
-                    "amount": -9000
-                }
-            ],
+            "action": {"money": -9000},
             "next": "bread-beginners-bread"
         },
         "bread-beginners-bread": {
             "image": "bread-bread.png",
             "message": "김복치씨는 일주일 동안 어떤 빵을 팔까?",
-            "button": [
-                {
-                    "name": "단팥빵",
-                    "action": [
-                        {
-                            "type": "addDay",
-                            "amount": 7
-                        },
-                        {
-                            "type": "result",
-                            "name": "result-bread-beginners-bean"
-                        }
-                    ]
-                },
-                {
-                    "name": "소시지빵",
-                    "action": [
-                        {
-                            "type": "addDay",
-                            "amount": 7
-                        },
-                        {
-                            "type": "result",
-                            "name": "result-bread-beginners-sausage"
-                        }
-                    ]
-                }
-            ]
+            "button": {
+                "단팥빵": {"result": "result-bread-beginners-bean"},
+                "소시지빵": {"result": "result-bread-beginners-sausage"}
+            }
         },
         "bread-bread": {
-            "image": "bread-bread.png",
             "message": "이제 본격적으로 시작해보자. 다음 일주일 동안은 어떤 빵을 팔까?",
-            "button": [
-                {
-                    "name": "단팥빵",
-                    "action": [
-                        {
-                            "type": "addDay",
-                            "amount": 7
-                        },
-                        {
-                            "type": "result",
-                            "name": "result-bread-bean"
-                        }
-                    ]
-                },
-                {
-                    "name": "소시지빵",
-                    "action": [
-                        {
-                            "type": "addDay",
-                            "amount": 7
-                        },
-                        {
-                            "type": "result",
-                            "name": "result-bread-sausage"
-                        }
-                    ]
-                }
-            ]
+            "button": {
+                "단팥빵": {"result": "result-bread-bean"},
+                "소시지빵": {"result": "result-bread-sausage"}
+            }
         },
         "bread-rental-fee": {
             "image": "rental-fee.png",
             "message": "월세를 내야 한다 ㅜㅜ",
-            "action": [
-                {
-                    "type": "addMoney",
-                    "amount": -300
-                }
-            ],
+            "action": {"money": -300},
             "next": "bread-bread"
         },
         "bread-beginners-great-success": {
             "image": "great-success.png",
             "message": "오픈 발이 있다!",
-            "next_if": [
-                {
-                    "condition": "ctx.day <= 28",
-                    "name": "bread-beginners-bread"
-                },
-                {
-                    "condition": "true",
-                    "name": "bread-rental-fee"
-                }
+            "next": [
+                {"bread-beginners-bread": "ctx.day <= 28"},
+                {"bread-rental-fee": true}
             ]
         },
         "bread-beginners-soso": {
             "image": "soso.png",
             "message": "친척들이 사갔다!",
-            "next_if": [
-                {
-                    "condition": "ctx.day <= 28",
-                    "name": "bread-beginners-bread"
-                },
-                {
-                    "condition": "true",
-                    "name": "bread-rental-fee"
-                }
+            "next": [
+                {"bread-beginners-bread": "ctx.day <= 28"},
+                {"bread-rental-fee": true}
             ]
         },
         "bread-beginners-fail": {
             "image": "fail.png",
             "message": "홍보가 덜 된 걸까?",
-            "next_if": [
-                {
-                    "condition": "ctx.day <= 28",
-                    "name": "bread-beginners-bread"
-                },
-                {
-                    "condition": "true",
-                    "name": "bread-rental-fee"
-                }
+            "next": [
+                {"bread-beginners-bread": "ctx.day <= 28"},
+                {"bread-rental-fee": true}
             ]
         },
         "bread-beginners-great-fail": {
             "image": "great-fail.png",
             "message": "밀가루 값 폭등",
-            "next_if": [
-                {
-                    "condition": "ctx.day <= 28",
-                    "name": "bread-beginners-bread"
-                },
-                {
-                    "condition": "true",
-                    "name": "bread-rental-fee"
-                }
+            "next": [
+                {"bread-beginners-bread": "ctx.day <= 28"},
+                {"bread-rental-fee": true}
             ]
         },
         "bread-great-success": {
             "image": "great-success.png",
             "message": "동네 맛집으로 입소문이 났다!",
-            "next_if": [
-                {
-                    "condition": "isFeeDay()",
-                    "name": "bread-rental-fee"
-                },
-                {
-                    "condition": "true",
-                    "name": "bread-bread"
-                }
+            "next": [
+                {"bread-rental-fee": "isFeeDay()"},
+                {"bread-bread": true}
             ]
         },
         "bread-soso": {
             "image": "soso.png",
             "message": "친구들이 사갔다!",
-            "next_if": [
-                {
-                    "condition": "isFeeDay()",
-                    "name": "bread-rental-fee"
-                },
-                {
-                    "condition": "true",
-                    "name": "bread-bread"
-                }
+            "next": [
+                {"bread-rental-fee": "isFeeDay()"},
+                {"bread-bread": true}
             ]
         },
         "bread-fail": {
             "image": "fail.png",
             "message": "머리카락이 나왔다!",
-            "next_if": [
-                {
-                    "condition": "isFeeDay()",
-                    "name": "bread-rental-fee"
-                },
-                {
-                    "condition": "true",
-                    "name": "bread-bread"
-                }
+            "next": [
+                {"bread-rental-fee": "isFeeDay()"},
+                {"bread-bread": true}
             ]
         },
         "bread-great-fail": {
             "image": "great-fail.png",
             "message": "빵에 곰팡이가 슬었다",
-            "next_if": [
-                {
-                    "condition": "isFeeDay()",
-                    "name": "bread-rental-fee"
-                },
-                {
-                    "condition": "true",
-                    "name": "bread-bread"
-                }
+            "next": [
+                {"bread-rental-fee": "isFeeDay()"},
+                {"bread-bread": true}
             ]
         }
     },
     "result": {
-        "result-chicken-beginners-fried": [
-            {
-                "scene": "chicken-beginners-great-success",
-                "weight": "20",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 200
-                    }
-                ]
-            },
-            {
-                "scene": "chicken-beginners-soso",
-                "weight": "30",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 100
-                    }
-                ]
-            },
-            {
-                "scene": "chicken-beginners-fail",
-                "weight": "20",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -50
-                    }
-                ]
-            },
-            {
-                "scene": "chicken-beginners-great-fail",
-                "weight": "30",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -100
-                    }
-                ]
-            }
-        ],
-        "result-chicken-beginners-spicy": [
-            {
-                "scene": "chicken-beginners-great-success",
-                "weight": "20",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 300
-                    }
-                ]
-            },
-            {
-                "scene": "chicken-beginners-soso",
-                "weight": "30",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 100
-                    }
-                ]
-            },
-            {
-                "scene": "chicken-beginners-fail",
-                "weight": "20",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -100
-                    }
-                ]
-            },
-            {
-                "scene": "chicken-beginners-great-fail",
-                "weight": "30",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -200
-                    }
-                ]
-            }
-        ],
-        "result-chicken-fried": [
-            {
-                "scene": "chicken-great-success",
-                "weight": "10",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 200
-                    }
-                ]
-            },
-            {
-                "scene": "chicken-soso",
-                "weight": "20",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 100
-                    }
-                ]
-            },
-            {
-                "scene": "chicken-fail",
-                "weight": "40",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -100
-                    }
-                ]
-            },
-            {
-                "scene": "chicken-great-fail",
-                "weight": "30",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -200
-                    }
-                ]
-            }
-        ],
-        "result-chicken-spicy": [
-            {
-                "scene": "chicken-great-success",
-                "weight": "10",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 300
-                    }
-                ]
-            },
-            {
-                "scene": "chicken-soso",
-                "weight": "20",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 100
-                    }
-                ]
-            },
-            {
-                "scene": "chicken-fail",
-                "weight": "40",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -100
-                    }
-                ]
-            },
-            {
-                "scene": "chicken-great-fail",
-                "weight": "30",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -300
-                    }
-                ]
-            }
-        ],
-        "result-bread-beginners-bean": [
-            {
-                "scene": "bread-beginners-great-success",
-                "weight": "20",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 100
-                    }
-                ]
-            },
-            {
-                "scene": "bread-beginners-soso",
-                "weight": "30",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 50
-                    }
-                ]
-            },
-            {
-                "scene": "bread-beginners-fail",
-                "weight": "20",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -50
-                    }
-                ]
-            },
-            {
-                "scene": "bread-beginners-great-fail",
-                "weight": "30",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -200
-                    }
-                ]
-            }
-        ],
-        "result-bread-beginners-sausage": [
-            {
-                "scene": "bread-beginners-great-success",
-                "weight": "20",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 150
-                    }
-                ]
-            },
-            {
-                "scene": "bread-beginners-soso",
-                "weight": "30",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 100
-                    }
-                ]
-            },
-            {
-                "scene": "bread-beginners-fail",
-                "weight": "20",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -100
-                    }
-                ]
-            },
-            {
-                "scene": "bread-beginners-great-fail",
-                "weight": "30",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -250
-                    }
-                ]
-            }
-        ],
-        "result-bread-bean": [
-            {
-                "scene": "bread-great-success",
-                "weight": "10",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 100
-                    }
-                ]
-            },
-            {
-                "scene": "bread-soso",
-                "weight": "20",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 50
-                    }
-                ]
-            },
-            {
-                "scene": "bread-fail",
-                "weight": "40",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -50
-                    }
-                ]
-            },
-            {
-                "scene": "bread-great-fail",
-                "weight": "30",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -200
-                    }
-                ]
-            }
-        ],
-        "result-bread-sausage": [
-            {
-                "scene": "bread-great-success",
-                "weight": "10",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 150
-                    }
-                ]
-            },
-            {
-                "scene": "bread-soso",
-                "weight": "20",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": 100
-                    }
-                ]
-            },
-            {
-                "scene": "bread-fail",
-                "weight": "40",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -100
-                    }
-                ]
-            },
-            {
-                "scene": "bread-great-fail",
-                "weight": "30",
-                "action": [
-                    {
-                        "type": "addMoney",
-                        "amount": -250
-                    }
-                ]
-            }
-        ]
+        "result-chicken-beginners-fried": {
+            "action": {"day": 7},
+            "chicken-beginners-great-success": {"prob": 20, "money": 200},
+            "chicken-beginners-soso": {"prob": 30, "money": 100},
+            "chicken-beginners-fail": {"prob": 20, "money": -50},
+            "chicken-beginners-great-fail": {"prob": 30, "money": -100}
+        },
+        "result-chicken-beginners-spicy": {
+            "action": {"day": 7},
+            "chicken-beginners-great-success": {"prob": 20, "money": 300},
+            "chicken-beginners-soso": {"prob": 30, "money": 100},
+            "chicken-beginners-fail": {"prob": 20, "money": -100},
+            "chicken-beginners-great-fail": {"prob": 30, "money": -200}
+        },
+        "result-chicken-fried": {
+            "action": {"day": 7},
+            "chicken-great-success": {"prob": 10, "money": 200},
+            "chicken-soso": {"prob": 20, "money": 100},
+            "chicken-fail": {"prob": 40, "money": -100},
+            "chicken-great-fail": {"prob": 30, "money": -200}
+        },
+        "result-chicken-spicy": {
+            "action": {"day": 7},
+            "chicken-great-success": {"prob": 10, "money": 300},
+            "chicken-soso": {"prob": 20, "money": 100},
+            "chicken-fail": {"prob": 40, "money": -100},
+            "chicken-great-fail": {"prob": 30, "money": -300}
+        },
+        "result-bread-beginners-bean": {
+            "action": {"day": 7},
+            "bread-beginners-great-success": {"prob": 20, "money": 100},
+            "bread-beginners-soso": {"prob": 30, "money": 50},
+            "bread-beginners-fail": {"prob": 20, "money": -50},
+            "bread-beginners-great-fail": {"prob": 30, "money": -200}
+        },
+        "result-bread-beginners-sausage": {
+            "action": {"day": 7},
+            "bread-beginners-great-success": {"prob": 20, "money": 150},
+            "bread-beginners-soso": {"prob": 30, "money": 100},
+            "bread-beginners-fail": {"prob": 20, "money": -100},
+            "bread-beginners-great-fail": {"prob": 30, "money": -250}
+        },
+        "result-bread-bean": {
+            "action": {"day": 7},
+            "bread-great-success": {"prob": 10, "money": 100},
+            "bread-soso": {"prob": 20, "money": 50},
+            "bread-fail": {"prob": 40, "money": -50},
+            "bread-great-fail": {"prob": 30, "money": -200}
+        },
+        "result-bread-sausage": {
+            "action": {"day": 7},
+            "bread-great-success": {"prob": 10, "money": 150},
+            "bread-soso": {"prob": 20, "money": 100},
+            "bread-fail": {"prob": 40, "money": -100},
+            "bread-great-fail": {"prob": 30, "money": -250}
+        }
     }
 }
