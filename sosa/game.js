@@ -35,7 +35,12 @@ const $image = document.getElementById('image')
 const $caption = document.getElementById('caption')
 const $message = document.getElementById('message')
 
-$body.addEventListener('click', $event => {
+const clickEventName =
+  /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+    ? 'touchstart'
+    : 'click'
+
+$body.addEventListener(clickEventName, $event => {
   const scene = getCurrentSceneData()
   if (scene.button) {
     return
@@ -85,7 +90,7 @@ const addMoney = delta => setMoney(ctx.money + delta)
 const isTrue = condition => condition && eval(condition) // eslint-disable-line
 
 for (let $button of $buttons) {
-  $button.addEventListener('click', $event => {
+  $button.addEventListener(clickEventName, $event => {
     const $currentButtons = getCurrentButtonElements()
     for (let index = 0; index < $currentButtons.length; index++) {
       if ($event.target === $currentButtons[index]) {
