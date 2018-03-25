@@ -16,7 +16,7 @@
             }
         },
         "rest_in_peace": {
-            "message": "`김복치씨... ${ctx.week}주 동안 고생 많으셨어요... 다음엔 꼭 행복해지세요 ㅜㅜ`",
+            "message": "`김복치씨... ${formatMoney(ctx.stat['earn'])}이나 벌었는데...\n${ctx.week}주 동안 고생 많으셨어요... 다음엔 꼭 행복해지세요 ㅜㅜ`",
             "button": {
                 "기록": [
                     {"javascript": "rank"},

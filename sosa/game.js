@@ -77,11 +77,6 @@ const setMoney = value => {
   return true
 }
 const addMoney = delta => setMoney(ctx.money + delta)
-const getStat = key =>
-  Object.entries(ctx.stat)
-    .filter(e => e[0].indexOf(key) >= 0)
-    .map(e => e[1])
-    .reduce((a, b) => a + b, 0)
 const isTrue = condition => condition && eval(condition) // eslint-disable-line
 
 for (let $button of $buttons) {
@@ -197,6 +192,8 @@ const act = (maybeActions, hint) => {
       case 'week':
         return addDay(value)
       case 'money':
+        if (value > 0) ctx.stat['earn'] = (ctx.stat['earn'] || 0) + value
+        else ctx.stat['lose'] = (ctx.stat['lose'] || 0) + value
         showMoneyChanged(value)
         return addMoney(value)
       case 'result':
