@@ -22,13 +22,17 @@ const ctx = {
   data: null,
   scene: 'splash',
   week: 0,
+  category: 0,
   money: 0,
-  stat: {}
+  loop: 0,
+  stat: {},
+  running: false
 }
 const $body = document.body
 const $week = document.getElementById('week')
 const $money = document.getElementById('money')
 const $image = document.getElementById('image')
+const $caption = document.getElementById('caption')
 const $message = document.getElementById('message')
 
 $body.addEventListener('click', $event => {
@@ -36,8 +40,9 @@ $body.addEventListener('click', $event => {
   if (scene.button) {
     return
   }
-  if (ctx.money <= 0) {
+  if (ctx.money <= 0 && ctx.running) {
     changeScene('rest_in_peace')
+    ctx.running = false
     return
   }
   if (scene.next) {
@@ -125,6 +130,7 @@ const nl2br = str => (str || '').replace(/\n/, '<br>')
 const changeScene = (name, moneyChanged) => {
   console.log(name)
   const scene = changeCurrentSceneData(name)
+  $caption.innerHTML = ''
   $image.setAttribute(
     'style',
     `background-image: url("image/${scene.image || `${name}.png`}")`
@@ -156,15 +162,82 @@ const scriptFunctions = {
   initializeStatus: () => {
     setDay(1)
     setMoney(10000)
-    ctx.stat = {}
+    ctx.stat = { earn: 0, lose: 0, flow: [] }
+    ctx.running = true
+    ctx.loop++
   },
   rank: () => {
-    let name = ''
+    let comment = ''
     do {
-      name = (window.prompt('유언을 남겨주세요 (8글자)') || '').trim()
-      if (!name) return
-    } while (name.length > 8)
-    console.log(name)
+      comment = (window.prompt('유언을 남겨주세요 (8글자)') || '').trim()
+      if (!comment) return
+    } while (comment.length > 8)
+    const data = {
+      comment: comment,
+      week: ctx.week,
+      category: ctx.category,
+      earn: ctx.stat.flow.filter(e => e > 0).reduce((a, b) => a + b, 0),
+      lose: ctx.stat.flow
+        .slice(1)
+        .filter(e => e < 0)
+        .reduce((a, b) => a + b, 0),
+      loop: ctx.loop,
+      flow: ctx.stat.flow.join(',')
+    }
+    console.log(data)
+    window
+      .fetch('rank', {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(data)
+      })
+      .then(r => r.json())
+      .then(r => {
+        console.log(r)
+        ctx.rank = r
+        changeScene('rank')
+      })
+      .catch(err => {
+        console.log(err)
+        window.alert('기록에 실패했습니다 ㅜㅜ')
+        changeScene('intro-1')
+      })
+  },
+  showRank: () => {
+    const _print = rank => {
+      const messages = []
+      let index = 1
+      for (let e of rank) {
+        messages.push(
+          `${index++}등 ${e.category === 0 ? '치킨' : '빵'} ${
+            e.week
+          }주 ${formatMoney(e.earn)}: ${e.comment}`
+        )
+      }
+      $image.setAttribute(
+        'style',
+        $image.getAttribute('style') + ';opacity:0.5'
+      )
+      $caption.innerHTML = `${messages.join('<br>')}`
+    }
+    if (ctx.rank) _print(ctx.rank)
+    else {
+      window
+        .fetch('rank')
+        .then(r => r.json())
+        .then(r => {
+          ctx.rank = r
+          _print(ctx.rank)
+        })
+        .catch(err => {
+          console.log(err)
+          window.alert('기록을 불러올 수 없습니다 ㅜㅜ')
+          changeScene('intro-1')
+        })
+    }
   }
 }
 const showMoneyChanged = amount => {
@@ -199,9 +272,12 @@ const act = (maybeActions, hint) => {
         return changeScene(value, hint)
       case 'week':
         return addDay(value)
+      case 'category':
+        ctx.category = value
+        return true
       case 'money':
-        if (value > 0) ctx.stat['earn'] = (ctx.stat['earn'] || 0) + value
-        else ctx.stat['lose'] = (ctx.stat['lose'] || 0) + value
+        if (value > 0) ctx.stat.earn += value
+        ctx.stat.flow.push(value)
         showMoneyChanged(value)
         return addMoney(value)
       case 'result':

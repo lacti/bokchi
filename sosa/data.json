@@ -19,14 +19,19 @@
             "message": "`김복치씨... ${formatMoney(ctx.stat['earn'])}이나 벌었는데...\n${ctx.week}주 동안 고생 많으셨어요... 다음엔 꼭 행복해지세요 ㅜㅜ`",
             "button": {
                 "기록": [
-                    {"javascript": "rank"},
-                    {"scene": "intro-1"}
+                    {"javascript": "rank"}
                 ],
                 "다시하기": [
                     {"javascript": "initializeStatus"},
                     {"scene": "intro-1"}
                 ]
             }
+        },
+        "rank": {
+            "image": "rest_in_peace.png",
+            "message": "김복치 유니버스의 기록",
+            "action": "showRank",
+            "next": "intro-1"
         },
         "intro-1": {
             "action": "initializeStatus",
@@ -42,7 +47,7 @@
         },
         "chicken-start": {
             "message": "건물임대료 8천만원, 인테리어 1천만원, 프랜차이즈가입 0.5천만원! 김복치씨에겐 5백만원과 치킨집이 남았다!",
-            "action": {"money": -9500},
+            "action": {"money": -9500, "category": 0},
             "next": "chicken-beginners-chicken"
         },
         "chicken-beginners-chicken": {
@@ -156,7 +161,7 @@
         },
         "bread-start": {
             "message": "건물임대료 6천만원, 인테리어 2천만원, 프랜차이즈가입 1.3천만원!\n김복치씨에겐 7백만원과 빵집이 남았다!",
-            "action": {"money": -9300},
+            "action": {"money": -9300, "category": 1},
             "next": "bread-beginners-bread"
         },
         "bread-beginners-bread": {

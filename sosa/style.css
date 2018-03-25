@@ -30,11 +30,30 @@ table tfoot tr td#choice {
     vertical-align: top;
 }
 
+#panel, #image, #caption {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+#panel {
+    position: relative;
+    z-index: 1;
+}
 #image {
     background: white;
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center center;
+    position: absolute;
+    z-index: -1;
+}
+#caption {
+    padding-left: 1em;
+    display : flex;
+    align-items : center;
 }
 #status {
     padding: 2px 1em;
