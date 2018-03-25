@@ -157,6 +157,13 @@ const scriptFunctions = {
     setDay(1)
     setMoney(10000)
     ctx.stat = {}
+  },
+  rank: () => {
+    let name = ''
+    while (name.length === 0 || name.length > 8) {
+      name = window.prompt('유언을 남겨주세요 (8글자)').trim()
+    }
+    console.log(name)
   }
 }
 const showMoneyChanged = amount => {
