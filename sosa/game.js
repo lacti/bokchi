@@ -127,7 +127,7 @@ const changeScene = (name, moneyChanged) => {
   const scene = changeCurrentSceneData(name)
   $image.setAttribute(
     'style',
-    `background-image: url("${scene.image || `${name}.png`}")`
+    `background-image: url("image/${scene.image || `${name}.png`}")`
   )
   const message =
     scene.message.constructor.name === 'String'
