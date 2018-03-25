@@ -62,7 +62,11 @@
         },
         "chicken-rental-fee": {
             "image": "rental-fee.png",
-            "message": "월세를 내야 한다 ㅜㅜ",
+            "message": [
+                "월세를 내야 한다 ㅜㅜ",
+                "월세..피같은 내 돈..",
+                "월세라니, 건물주가 되고싶다"
+            ],
             "action": {"money": -100},
             "next": "chicken-chicken"
         },
@@ -100,7 +104,14 @@
         },
         "chicken-great-success": {
             "image": "great-success.png",
-            "message": "한일전 축구경기가 있었다!",
+            "message":[ "한일전 축구경기가 있었다!",
+                "치킨 먹기 좋은 날씨다!",
+                "야구경기 시즌이었다!",
+                "드라마에 치맥이 나왔다!",
+                "파워블로거가 소개했다",
+                "배달앱 1등을 하였다!",
+                "생활의 달인이 되어 TV에 나왔다!"
+            ],
             "next": [
                 {"chicken-rental-fee": "isFeeDay()"},
                 {"chicken-chicken": true}
@@ -108,7 +119,11 @@
         },
         "chicken-soso": {
             "image": "soso.png",
-            "message": "닭이 잘 튀겨졌다!",
+            "message":["닭이 잘 튀겨졌다!",
+                "단골이 생겼다!",
+                "동네에서 입소문이 난 것 같다",
+                "동네 반상회가 열렸다!"
+            ],
             "next": [
                 {"chicken-rental-fee": "isFeeDay()"},
                 {"chicken-chicken": true}
@@ -116,7 +131,11 @@
         },
         "chicken-fail": {
             "image": "fail.png",
-            "message": "덜익은 닭이 배달되었다!",
+            "message":[ "덜익은 닭이 배달되었다!",
+                "닭이 맛없다고 한다",
+                "생맥주 기계가 망가졌다",
+                "닭값이 올라갔다"
+            ],
             "next": [
                 {"chicken-rental-fee": "isFeeDay()"},
                 {"chicken-chicken": true}
@@ -124,7 +143,12 @@
         },
         "chicken-great-fail": {
             "image": "great-fail.png",
-            "message": "배달앱에 나쁜 리뷰가 달렸다!",
+            "message":[ "배달앱에 나쁜 리뷰가 달렸다!",
+                "취객이 난동을 부렸다",
+                "동네 사람과 싸웠다",
+                "냉장고가 고장나서 준비한 닭이 상했다",
+                "AI 파동이 일어났다."
+            ],
             "next": [
                 {"chicken-rental-fee": "isFeeDay()"},
                 {"chicken-chicken": true}
@@ -152,7 +176,10 @@
         },
         "bread-rental-fee": {
             "image": "rental-fee.png",
-            "message": "월세를 내야 한다 ㅜㅜ",
+            "message": ["월세를 내야 한다 ㅜㅜ",
+                "월세가 너무 비싸다",
+                "신도시 월세는 너무 비싼걸"
+            ],
             "action": {"money": -200},
             "next": "bread-bread"
         },
@@ -190,7 +217,11 @@
         },
         "bread-great-success": {
             "image": "great-success.png",
-            "message": "동네 맛집으로 입소문이 났다!",
+            "message": ["동네 맛집으로 입소문이 났다!",
+                "인스타그램에서 맛집으로 소문이 났다",
+                "페이스북에 맛집으로 소개되었다.",
+                "생생정보통에서 다녀갔다!"
+            ],
             "next": [
                 {"bread-rental-fee": "isFeeDay()"},
                 {"bread-bread": true}
@@ -198,7 +229,11 @@
         },
         "bread-soso": {
             "image": "soso.png",
-            "message": "친구들이 사갔다!",
+            "message": ["친구들이 사갔다!",
+                "빵만드는게 좀 익숙해졌다!",
+                "빵 만드는게 내 천직이었을까!?",
+                "밀가루는 최고지!"
+            ],
             "next": [
                 {"bread-rental-fee": "isFeeDay()"},
                 {"bread-bread": true}
@@ -206,7 +241,12 @@
         },
         "bread-fail": {
             "image": "fail.png",
-            "message": "머리카락이 나왔다!",
+            "message":[ "머리카락이 나왔다!",
+                "사람들이 빵을 만지고 안사간다",
+                "계란 값이 올랐다",
+                "빵 굽는건 너무 어렵다!",
+                "빵 굽다가 팔에 부상을 입었다!"
+            ],
             "next": [
                 {"bread-rental-fee": "isFeeDay()"},
                 {"bread-bread": true}
@@ -214,7 +254,11 @@
         },
         "bread-great-fail": {
             "image": "great-fail.png",
-            "message": "빵에 곰팡이가 슬었다",
+            "message":[ "빵에 곰팡이가 슬었다",
+            "동네 사람들과 싸웠다",
+            "프랜차이즈 사장이 사회적 물의를 일으켰다!",
+            "오븐이 망가져서 빵을 구울 수 없었다!"
+            ],
             "next": [
                 {"bread-rental-fee": "isFeeDay()"},
                 {"bread-bread": true}
