@@ -11,7 +11,7 @@
             }
         },
         "rest_in_peace": {
-            "message": "`김복치씨... ${ctx.day}일 동안 고생 많으셨어요... 다음엔 꼭 행복해지세요 ㅜㅜ`",
+            "message": "`김복치씨... ${ctx.week}주차 동안 고생 많으셨어요... 다음엔 꼭 행복해지세요 ㅜㅜ`",
             "button": {
                 "다시하기": [
                     {"javascript": "initializeStatus"},
@@ -61,7 +61,7 @@
             "image": "great-success.png",
             "message": "오픈빨이 있다!",
             "next": [
-                {"chicken-beginners-chicken": "ctx.day <= 28"},
+                {"chicken-beginners-chicken": "ctx.week <= 4"},
                 {"chicken-rental-fee": true}
             ]
         },
@@ -69,7 +69,7 @@
             "image": "soso.png",
             "message": "친구들이 와서 먹어줬다!",
             "next": [
-                {"chicken-beginners-chicken": "ctx.day <= 28"},
+                {"chicken-beginners-chicken": "ctx.week <= 4"},
                 {"chicken-rental-fee": true}
             ]
         },
@@ -77,7 +77,7 @@
             "image": "fail.png",
             "message": "홍보가 덜 된 걸까?",
             "next": [
-                {"chicken-beginners-chicken": "ctx.day <= 28"},
+                {"chicken-beginners-chicken": "ctx.week <= 4"},
                 {"chicken-rental-fee": true}
             ]
         },
@@ -85,7 +85,7 @@
             "image": "great-fail.png",
             "message": "AI 파동",
             "next": [
-                {"chicken-beginners-chicken": "ctx.day <= 28"},
+                {"chicken-beginners-chicken": "ctx.week <= 4"},
                 {"chicken-rental-fee": true}
             ]
         },
@@ -151,7 +151,7 @@
             "image": "great-success.png",
             "message": "오픈빨이 있다!",
             "next": [
-                {"bread-beginners-bread": "ctx.day <= 28"},
+                {"bread-beginners-bread": "ctx.week <= 4"},
                 {"bread-rental-fee": true}
             ]
         },
@@ -159,7 +159,7 @@
             "image": "soso.png",
             "message": "친척들이 사갔다!",
             "next": [
-                {"bread-beginners-bread": "ctx.day <= 28"},
+                {"bread-beginners-bread": "ctx.week <= 4"},
                 {"bread-rental-fee": true}
             ]
         },
@@ -167,7 +167,7 @@
             "image": "fail.png",
             "message": "홍보가 덜 된 걸까?",
             "next": [
-                {"bread-beginners-bread": "ctx.day <= 28"},
+                {"bread-beginners-bread": "ctx.week <= 4"},
                 {"bread-rental-fee": true}
             ]
         },
@@ -175,7 +175,7 @@
             "image": "great-fail.png",
             "message": "밀가루 값 폭등",
             "next": [
-                {"bread-beginners-bread": "ctx.day <= 28"},
+                {"bread-beginners-bread": "ctx.week <= 4"},
                 {"bread-rental-fee": true}
             ]
         },
@@ -214,56 +214,56 @@
     },
     "result": {
         "result-chicken-beginners-fried": {
-            "action": {"day": 7},
+            "action": {"week": 1},
             "chicken-beginners-great-success": {"prob": 20, "money": 200},
             "chicken-beginners-soso": {"prob": 30, "money": 100},
             "chicken-beginners-fail": {"prob": 20, "money": -50},
             "chicken-beginners-great-fail": {"prob": 30, "money": -100}
         },
         "result-chicken-beginners-spicy": {
-            "action": {"day": 7},
+            "action": {"week": 1},
             "chicken-beginners-great-success": {"prob": 20, "money": 300},
             "chicken-beginners-soso": {"prob": 30, "money": 100},
             "chicken-beginners-fail": {"prob": 20, "money": -100},
             "chicken-beginners-great-fail": {"prob": 30, "money": -200}
         },
         "result-chicken-fried": {
-            "action": {"day": 7},
+            "action": {"week": 1},
             "chicken-great-success": {"prob": 10, "money": 200},
             "chicken-soso": {"prob": 20, "money": 100},
             "chicken-fail": {"prob": 40, "money": -100},
             "chicken-great-fail": {"prob": 30, "money": -200}
         },
         "result-chicken-spicy": {
-            "action": {"day": 7},
+            "action": {"week": 1},
             "chicken-great-success": {"prob": 10, "money": 300},
             "chicken-soso": {"prob": 20, "money": 100},
             "chicken-fail": {"prob": 40, "money": -100},
             "chicken-great-fail": {"prob": 30, "money": -300}
         },
         "result-bread-beginners-bean": {
-            "action": {"day": 7},
+            "action": {"week": 1},
             "bread-beginners-great-success": {"prob": 20, "money": 100},
             "bread-beginners-soso": {"prob": 30, "money": 50},
             "bread-beginners-fail": {"prob": 20, "money": -50},
             "bread-beginners-great-fail": {"prob": 30, "money": -200}
         },
         "result-bread-beginners-sausage": {
-            "action": {"day": 7},
+            "action": {"week": 1},
             "bread-beginners-great-success": {"prob": 20, "money": 150},
             "bread-beginners-soso": {"prob": 30, "money": 100},
             "bread-beginners-fail": {"prob": 20, "money": -100},
             "bread-beginners-great-fail": {"prob": 30, "money": -250}
         },
         "result-bread-bean": {
-            "action": {"day": 7},
+            "action": {"week": 1},
             "bread-great-success": {"prob": 10, "money": 100},
             "bread-soso": {"prob": 20, "money": 50},
             "bread-fail": {"prob": 40, "money": -50},
             "bread-great-fail": {"prob": 30, "money": -200}
         },
         "result-bread-sausage": {
-            "action": {"day": 7},
+            "action": {"week": 1},
             "bread-great-success": {"prob": 10, "money": 150},
             "bread-soso": {"prob": 20, "money": 100},
             "bread-fail": {"prob": 40, "money": -100},

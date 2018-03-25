@@ -21,11 +21,11 @@ const requestFullscreen = element => {
 const ctx = {
   data: null,
   scene: 'splash',
-  day: 1,
+  week: 1,
   money: 10000
 }
 const $body = document.body
-const $day = document.getElementById('day')
+const $week = document.getElementById('week')
 const $money = document.getElementById('money')
 const $image = document.getElementById('image')
 const $message = document.getElementById('message')
@@ -65,10 +65,10 @@ const $button2 = document.getElementById('button-2')
 const $buttons = [$button1, $button2]
 
 const setDay = value => {
-  ctx.day = value
-  $day.innerText = `${ctx.day}일차`
+  ctx.week = value
+  $week.innerText = `${ctx.week}주차`
 }
-const addDay = inc => setDay(ctx.day + inc)
+const addDay = inc => setDay(ctx.week + inc)
 const setMoney = value => {
   ctx.money = value
   $money.innerText = formatMoney(ctx.money * 10000)
@@ -116,7 +116,7 @@ const getCurrentButtonElements = () => {
       return [$button1, $button2]
   }
 }
-const isFeeDay = () => ((ctx.day - 1) / 7) % 4 === 0 // eslint-disable-line
+const isFeeDay = () => (ctx.week - 1) % 4 === 0 // eslint-disable-line
 const nl2br = str => (str || '').replace(/\n/, '<br>')
 const changeScene = (name, moneyChanged) => {
   console.log(name)
@@ -181,7 +181,7 @@ const act = (actions, hint) => {
           changeScene(value)
           break
 
-        case 'day':
+        case 'week':
           addDay(value)
           break
 
