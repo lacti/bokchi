@@ -122,8 +122,8 @@
             ]
         },
         "bread-start": {
-            "message": "건물임대료 6천만원, 인테리어 2천만원, 프랜차이즈가입 1천만원! 김복치씨에겐 5백만원과 치킨집이 남았다!",
-            "action": {"money": -9000},
+            "message": "건물임대료 6천만원, 인테리어 2천만원, 프랜차이즈가입 1.3천만원!\n김복치씨에겐 7백만원과 빵집이 남았다!",
+            "action": {"money": -9300},
             "next": "bread-beginners-bread"
         },
         "bread-beginners-bread": {
@@ -144,7 +144,7 @@
         "bread-rental-fee": {
             "image": "rental-fee.png",
             "message": "월세를 내야 한다 ㅜㅜ",
-            "action": {"money": -300},
+            "action": {"money": -200},
             "next": "bread-bread"
         },
         "bread-beginners-great-success": {

@@ -117,7 +117,7 @@ const getCurrentButtonElements = () => {
   }
 }
 const isFeeDay = () => ((ctx.day - 1) / 7) % 4 === 0 // eslint-disable-line
-const nl2br = str => (str || '').replace(/\\n/, '<br>')
+const nl2br = str => (str || '').replace(/\n/, '<br>')
 const changeScene = (name, moneyChanged) => {
   console.log(name)
   const scene = changeCurrentSceneData(name)
