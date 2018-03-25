@@ -160,9 +160,10 @@ const scriptFunctions = {
   },
   rank: () => {
     let name = ''
-    while (name.length === 0 || name.length > 8) {
+    do {
       name = (window.prompt('유언을 남겨주세요 (8글자)') || '').trim()
-    }
+      if (!name) return
+    } while (name.length > 8)
     console.log(name)
   }
 }
