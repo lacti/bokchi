@@ -11,8 +11,12 @@
             }
         },
         "rest_in_peace": {
-            "message": "`김복치씨... ${ctx.week}주차 동안 고생 많으셨어요... 다음엔 꼭 행복해지세요 ㅜㅜ`",
+            "message": "`김복치씨... ${ctx.week}주 동안 고생 많으셨어요... 다음엔 꼭 행복해지세요 ㅜㅜ`",
             "button": {
+                "기록": [
+                    {"javascript": "rank"},
+                    {"scene": "intro-1"}
+                ],
                 "다시하기": [
                     {"javascript": "initializeStatus"},
                     {"scene": "intro-1"}
@@ -213,61 +217,61 @@
         }
     },
     "result": {
-        "result-chicken-beginners-fried": {
-            "action": {"week": 1},
-            "chicken-beginners-great-success": {"prob": 20, "money": 200},
-            "chicken-beginners-soso": {"prob": 30, "money": 100},
-            "chicken-beginners-fail": {"prob": 20, "money": -50},
-            "chicken-beginners-great-fail": {"prob": 30, "money": -100}
-        },
-        "result-chicken-beginners-spicy": {
-            "action": {"week": 1},
-            "chicken-beginners-great-success": {"prob": 20, "money": 300},
-            "chicken-beginners-soso": {"prob": 30, "money": 100},
-            "chicken-beginners-fail": {"prob": 20, "money": -100},
-            "chicken-beginners-great-fail": {"prob": 30, "money": -200}
-        },
-        "result-chicken-fried": {
-            "action": {"week": 1},
-            "chicken-great-success": {"prob": 10, "money": 200},
-            "chicken-soso": {"prob": 20, "money": 100},
-            "chicken-fail": {"prob": 40, "money": -100},
-            "chicken-great-fail": {"prob": 30, "money": -200}
-        },
-        "result-chicken-spicy": {
-            "action": {"week": 1},
-            "chicken-great-success": {"prob": 10, "money": 300},
-            "chicken-soso": {"prob": 20, "money": 100},
-            "chicken-fail": {"prob": 40, "money": -100},
-            "chicken-great-fail": {"prob": 30, "money": -300}
-        },
-        "result-bread-beginners-bean": {
-            "action": {"week": 1},
-            "bread-beginners-great-success": {"prob": 20, "money": 100},
-            "bread-beginners-soso": {"prob": 30, "money": 50},
-            "bread-beginners-fail": {"prob": 20, "money": -50},
-            "bread-beginners-great-fail": {"prob": 30, "money": -200}
-        },
-        "result-bread-beginners-sausage": {
-            "action": {"week": 1},
-            "bread-beginners-great-success": {"prob": 20, "money": 150},
-            "bread-beginners-soso": {"prob": 30, "money": 100},
-            "bread-beginners-fail": {"prob": 20, "money": -100},
-            "bread-beginners-great-fail": {"prob": 30, "money": -250}
-        },
-        "result-bread-bean": {
-            "action": {"week": 1},
-            "bread-great-success": {"prob": 10, "money": 100},
-            "bread-soso": {"prob": 20, "money": 50},
-            "bread-fail": {"prob": 40, "money": -50},
-            "bread-great-fail": {"prob": 30, "money": -200}
-        },
-        "result-bread-sausage": {
-            "action": {"week": 1},
-            "bread-great-success": {"prob": 10, "money": 150},
-            "bread-soso": {"prob": 20, "money": 100},
-            "bread-fail": {"prob": 40, "money": -100},
-            "bread-great-fail": {"prob": 30, "money": -250}
-        }
+        "result-chicken-beginners-fried": [
+            {"week": 1},
+            {"prob": 20, "money": 200, "scene": "chicken-beginners-great-success"},
+            {"prob": 30, "money": 100, "scene": "chicken-beginners-soso"},
+            {"prob": 20, "money": -100, "scene": "chicken-beginners-fail"},
+            {"prob": 30, "money": -200, "scene": "chicken-beginners-great-fail"}
+        ],
+        "result-chicken-fried": [
+            {"week": 1},
+            {"prob": 10, "money": 200, "scene": "chicken-great-success"},
+            {"prob": 20, "money": 100, "scene": "chicken-soso"},
+            {"prob": 40, "money": -100, "scene": "chicken-fail"},
+            {"prob": 30, "money": -200, "scene": "chicken-great-fail"}
+        ],
+        "result-chicken-beginners-spicy": [
+            {"week": 1},
+            {"prob": 20, "money": 300, "scene": "chicken-beginners-great-success"},
+            {"prob": 30, "money": 100, "scene": "chicken-beginners-soso"},
+            {"prob": 20, "money": -100, "scene": "chicken-beginners-fail"},
+            {"prob": 30, "money": -300, "scene": "chicken-beginners-great-fail"}
+        ],
+        "result-chicken-spicy": [
+            {"week": 1},
+            {"prob": 10, "money": 300, "scene": "chicken-great-success"},
+            {"prob": 20, "money": 100, "scene": "chicken-soso"},
+            {"prob": 40, "money": -100, "scene": "chicken-fail"},
+            {"prob": 30, "money": -300, "scene": "chicken-great-fail"}
+        ],
+        "result-bread-beginners-bean": [
+            {"week": 1},
+            {"prob": 20, "money": 100, "scene": "bread-beginners-great-success"},
+            {"prob": 30, "money": 50, "scene": "bread-beginners-soso"},
+            {"prob": 20, "money": -50, "scene": "bread-beginners-fail"},
+            {"prob": 30, "money": -200, "scene": "bread-beginners-great-fail"}
+        ],
+        "result-bread-bean": [
+            {"week": 1},
+            {"prob": 10, "money": 100, "scene": "bread-great-success"},
+            {"prob": 20, "money": 50, "scene": "bread-soso"},
+            {"prob": 40, "money": -50, "scene": "bread-fail"},
+            {"prob": 30, "money": -200, "scene": "bread-great-fail"}
+        ],
+        "result-bread-beginners-sausage": [
+            {"week": 1},
+            {"prob": 20, "money": 150, "scene": "bread-beginners-great-success"},
+            {"prob": 30, "money": 100, "scene": "bread-beginners-soso"},
+            {"prob": 20, "money": -100, "scene": "bread-beginners-fail"},
+            {"prob": 30, "money": -250, "scene": "bread-beginners-great-fail"}
+        ],
+        "result-bread-sausage": [
+            {"week": 1},
+            {"prob": 10, "money": 150, "scene": "bread-great-success"},
+            {"prob": 20, "money": 100, "scene": "bread-soso"},
+            {"prob": 40, "money": -100, "scene": "bread-fail"},
+            {"prob": 30, "money": -250, "scene": "bread-great-fail"}
+        ]
     }
 }

@@ -21,8 +21,9 @@ const requestFullscreen = element => {
 const ctx = {
   data: null,
   scene: 'splash',
-  week: 1,
-  money: 10000
+  week: 0,
+  money: 0,
+  stat: {}
 }
 const $body = document.body
 const $week = document.getElementById('week')
@@ -47,7 +48,7 @@ $body.addEventListener('click', $event => {
         console.log('next: ' + JSON.stringify(each))
         const nextScene = Object.keys(each)[0]
         const condition = each[nextScene]
-        if (eval(condition) /* eslint-disable-line */) {
+        if (isTrue(condition)) {
           changeScene(nextScene)
           break
         }
@@ -67,13 +68,21 @@ const $buttons = [$button1, $button2]
 const setDay = value => {
   ctx.week = value
   $week.innerText = `${ctx.week}주차`
+  return true
 }
 const addDay = inc => setDay(ctx.week + inc)
 const setMoney = value => {
   ctx.money = value
-  $money.innerText = formatMoney(ctx.money * 10000)
+  $money.innerText = formatMoney(ctx.money)
+  return true
 }
 const addMoney = delta => setMoney(ctx.money + delta)
+const getStat = key =>
+  Object.entries(ctx.stat)
+    .filter(e => e[0].indexOf(key) >= 0)
+    .map(e => e[1])
+    .reduce((a, b) => a + b, 0)
+const isTrue = condition => condition && eval(condition) // eslint-disable-line
 
 for (let $button of $buttons) {
   $button.addEventListener('click', $event => {
@@ -138,6 +147,7 @@ const changeScene = (name, moneyChanged) => {
   if (scene.button) {
     mapButtons(scene.button, getCurrentButtonElements())
   }
+  return true
 }
 
 const scriptFunctions = {
@@ -145,57 +155,72 @@ const scriptFunctions = {
   initializeStatus: () => {
     setDay(1)
     setMoney(10000)
+    ctx.stat = {}
   }
 }
 const showMoneyChanged = amount => {
   if (amount > 0) {
     $message.innerHTML += ` <font color="blue">${formatMoney(
-      Math.abs(amount) * 10000
+      amount
     )} 벌었다!</font>`
   } else if (amount < 0) {
     $message.innerHTML += ` <font color="red">${formatMoney(
-      Math.abs(amount) * 10000
+      -amount
     )} 지출 ㅜㅜ</font>`
   }
 }
 
-const act = (actions, hint) => {
-  if (actions === undefined || actions === null) {
-    return
+const rand = max => Math.floor(Math.random() * max)
+const act = (maybeActions, hint) => {
+  if (maybeActions === undefined || maybeActions === null) {
+    return false
   }
-  if (actions.constructor.name === 'Object') {
-    return act([actions])
-  }
-  if (actions.constructor.name !== 'Array') {
-    return act({ [hint || 'scene']: actions })
-  }
-  for (let action of actions) {
-    console.log(action)
-    for (let [type, value] of Object.entries(action)) {
-      switch (type) {
-        case 'javascript':
-          scriptFunctions[value]()
-          break
-
-        case 'scene':
-          changeScene(value)
-          break
-
-        case 'week':
-          addDay(value)
-          break
-
-        case 'money':
-          addMoney(value)
-          showMoneyChanged(value)
-          break
-
-        case 'result':
-          processResult(value)
-          break
-      }
+  const actions =
+    maybeActions.constructor.name === 'Object'
+      ? [maybeActions]
+      : maybeActions.constructor.name !== 'Array'
+        ? [{ [hint || 'scene']: maybeActions }]
+        : maybeActions
+  const _act = (type, value, hint) => {
+    console.log(`[act] ${type}: ${value}`)
+    switch (type) {
+      case 'javascript':
+        return scriptFunctions[value]()
+      case 'scene':
+        return changeScene(value, hint)
+      case 'week':
+        return addDay(value)
+      case 'money':
+        showMoneyChanged(value)
+        return addMoney(value)
+      case 'result':
+        return act(ctx.data.result[value])
     }
   }
+  const _actMany = action => {
+    let acted = false
+    let moneyChanged = 0
+    for (let [type, value] of Object.entries(action)) {
+      acted = _act(type, value, moneyChanged) || acted
+      moneyChanged = type === 'money' ? value : 0
+    }
+    return acted
+  }
+  // Unconditionally
+  for (let action of actions.filter(a => !a.prob && !a.cond)) _actMany(action)
+
+  // Conditionally
+  let acted = false
+  for (let action of actions.filter(a => a.cond))
+    if (isTrue(action.cond)) acted = _actMany(action) || acted
+
+  // Probability
+  const randomActions = actions.filter(a => a.prob)
+  while (acted === false && randomActions.length > 0) {
+    for (let action of randomActions)
+      if (action.prob > rand(100)) return (acted = _actMany(action) || acted)
+  }
+  return acted
 }
 
 window
@@ -218,22 +243,5 @@ const formatMoney = money => {
       (lower === 0 ? (depth === 0 ? '원' : '') : lower + '원만억조'[depth])
     )
   }
-  return money >= 0 ? _format(money, 0) : '-' + _format(-money, 0)
-}
-
-const processResult = resultName => {
-  const result = ctx.data.result[resultName]
-  act(result.action)
-
-  let gauge = Math.floor(Math.random() * 100)
-  for (let [nextScene, candidate] of Object.entries(result)) {
-    if (!candidate.prob) continue
-
-    gauge -= candidate.prob
-    if (gauge <= 0) {
-      act(candidate.money, 'money')
-      changeScene(nextScene, candidate.money)
-      return
-    }
-  }
+  return money >= 0 ? _format(money * 10000, 0) : '-' + _format(-money, 0)
 }
