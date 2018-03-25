@@ -35,6 +35,10 @@ $body.addEventListener('click', $event => {
   if (scene.button) {
     return
   }
+  if (ctx.money <= 0) {
+    changeScene('rest_in_peace')
+    return
+  }
   if (scene.next) {
     changeScene(scene.next)
   } else if (scene.next_if) {
@@ -112,7 +116,7 @@ const changeScene = (name, moneyChanged) => {
   if (scene.image) {
     $image.setAttribute('style', `background-image: url("${scene.image}")`)
   }
-  if (scene.message.indexOf('`') < 0) {
+  if (scene.message.indexOf('${') < 0) {
     $message.innerHTML = scene.message
   } else {
     $message.innerHTML = eval(scene.message)
@@ -175,9 +179,6 @@ const act = actions => {
         break
     }
   }
-  if (ctx.money <= 0) {
-    changeScene('rest_in_peace')
-  }
 }
 
 window
@@ -188,16 +189,19 @@ window
     changeScene('splash')
   })
 
-const formatMoney = (money, depth = 0) => {
-  if (money <= 0) {
-    return depth === 0 ? '0원' : ''
+const formatMoney = money => {
+  const _format = (money, depth) => {
+    if (money <= 0) {
+      return depth === 0 ? '0원' : ''
+    }
+    const upper = Math.floor(money / 10000)
+    const lower = money % 10000
+    return (
+      _format(upper, depth + 1) +
+      (lower === 0 ? (depth === 0 ? '원' : '') : lower + '원만억조'[depth])
+    )
   }
-  const upper = Math.floor(money / 10000)
-  const lower = money % 10000
-  return (
-    formatMoney(upper, depth + 1) +
-    (lower === 0 ? (depth === 0 ? '원' : '') : lower + '원만억조'[depth])
-  )
+  return money > 0 ? _format(money, 0) : '-' + _format(-money, 0)
 }
 
 const findAction = (actions, type) => {
@@ -216,8 +220,8 @@ const processResult = resultName => {
     gauge -= candidate.weight
     if (gauge <= 0) {
       act(candidate.action)
-      moneyAction = findAction(candidate.action, 'addMoney')
-      moneyChanged = moneyAction ? moneyAction.amount : null
+      const moneyAction = findAction(candidate.action, 'addMoney')
+      const moneyChanged = moneyAction ? moneyAction.amount : null
       changeScene(candidate.scene, moneyChanged)
       return
     }
