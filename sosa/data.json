@@ -59,7 +59,7 @@
         },
         "chicken-beginners-great-success": {
             "image": "great-success.png",
-            "message": "오픈 빨이 있다!",
+            "message": "오픈빨이 있다!",
             "next": [
                 {"chicken-beginners-chicken": "ctx.day <= 28"},
                 {"chicken-rental-fee": true}
@@ -149,7 +149,7 @@
         },
         "bread-beginners-great-success": {
             "image": "great-success.png",
-            "message": "오픈 발이 있다!",
+            "message": "오픈빨이 있다!",
             "next": [
                 {"bread-beginners-bread": "ctx.day <= 28"},
                 {"bread-rental-fee": true}
