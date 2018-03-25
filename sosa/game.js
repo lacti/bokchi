@@ -161,7 +161,7 @@ const scriptFunctions = {
   rank: () => {
     let name = ''
     while (name.length === 0 || name.length > 8) {
-      name = window.prompt('유언을 남겨주세요 (8글자)').trim()
+      name = (window.prompt('유언을 남겨주세요 (8글자)') || '').trim()
     }
     console.log(name)
   }
