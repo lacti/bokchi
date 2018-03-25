@@ -134,8 +134,14 @@ const changeScene = (name, moneyChanged) => {
     'style',
     `background-image: url("${scene.image || `${name}.png`}")`
   )
+  const message =
+    scene.message.constructor.name === 'String'
+      ? scene.message
+      : scene.message.length > 0
+        ? scene.message[rand(scene.message.length)]
+        : ''
   $message.innerHTML = nl2br(
-    scene.message.indexOf('${') < 0 ? scene.message : eval(scene.message) // eslint-disable-line
+    scene.message.indexOf('${') < 0 ? message : eval(message) // eslint-disable-line
   )
   if (moneyChanged) {
     showMoneyChanged(moneyChanged)
