@@ -185,7 +185,7 @@
                 "월세가 너무 비싸다",
                 "신도시 월세는 너무 비싼걸"
             ],
-            "action": {"money": -200},
+            "action": {"money": -150},
             "next": "bread-bread"
         },
         "bread-beginners-great-success": {

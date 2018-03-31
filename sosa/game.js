@@ -26,6 +26,7 @@ const ctx = {
   money: 0,
   loop: 0,
   stat: {},
+  flag: [],
   running: false
 }
 const $body = document.body
@@ -335,5 +336,7 @@ const formatMoney = money => {
       (lower === 0 ? (depth === 0 ? '원' : '') : lower + '원만억조'[depth])
     )
   }
-  return money >= 0 ? _format(money * 10000, 0) : '-' + _format(-money, 0)
+  return money >= 0
+    ? _format(money * 10000, 0)
+    : '-' + _format(-money * 10000, 0)
 }
