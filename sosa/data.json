@@ -304,28 +304,28 @@
             {"prob": 20, "money": 100, "scene": "bread-beginners-great-success"},
             {"prob": 30, "money": 50, "scene": "bread-beginners-soso"},
             {"prob": 20, "money": -50, "scene": "bread-beginners-fail"},
-            {"prob": 30, "money": -200, "scene": "bread-beginners-great-fail"}
+            {"prob": 30, "money": -100, "scene": "bread-beginners-great-fail"}
         ],
         "result-bread-bean": [
             {"week": 1},
             {"prob": 10, "money": 100, "scene": "bread-great-success"},
             {"prob": 20, "money": 50, "scene": "bread-soso"},
             {"prob": 40, "money": -50, "scene": "bread-fail"},
-            {"prob": 30, "money": -200, "scene": "bread-great-fail"}
+            {"prob": 30, "money": -100, "scene": "bread-great-fail"}
         ],
         "result-bread-beginners-sausage": [
             {"week": 1},
             {"prob": 20, "money": 150, "scene": "bread-beginners-great-success"},
             {"prob": 30, "money": 100, "scene": "bread-beginners-soso"},
             {"prob": 20, "money": -100, "scene": "bread-beginners-fail"},
-            {"prob": 30, "money": -250, "scene": "bread-beginners-great-fail"}
+            {"prob": 30, "money": -150, "scene": "bread-beginners-great-fail"}
         ],
         "result-bread-sausage": [
             {"week": 1},
             {"prob": 10, "money": 150, "scene": "bread-great-success"},
             {"prob": 20, "money": 100, "scene": "bread-soso"},
             {"prob": 40, "money": -100, "scene": "bread-fail"},
-            {"prob": 30, "money": -250, "scene": "bread-great-fail"}
+            {"prob": 30, "money": -150, "scene": "bread-great-fail"}
         ]
     }
 }
